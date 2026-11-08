@@ -6,9 +6,16 @@ Company website for **Asia Engineering Pte Ltd** (UEN 202433164C), Singapore —
 ```
 index.html            # single-page site
 assets/css/style.css  # styles & animations
-assets/js/main.js     # interactions (preloader, reveal, counters, tabs, canvas sparks, form)
-assets/img/           # logos (full / mark, colour & white) and favicon
+assets/js/main.js     # intro, cursor, breaker switch, skyline, scroll effects, form
+assets/img/           # logos, split logo pieces (mark-a / mark-e / mark-bolt) and favicon
 ```
+
+## Highlights
+- Intro: the logo assembles (A + E slide in, the bolt strikes with a flash)
+- Hero "main switch": flip it to light up the animated Singapore skyline and cranes
+- Words light up as you scroll the About statement
+- Services ride horizontally while scrolling (swipe on mobile)
+- Neon stats, filterable supply yard, circuit-board process timeline, custom cursor and sparks
 
 ## Run locally
 Open `index.html` in a browser, or serve the folder:

@@ -3,437 +3,402 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Asia Engineering Pte Ltd | Electrical &amp; Machinery Supply for Construction Sites – Singapore</title>
-  <meta name="description" content="Asia Engineering Pte Ltd (UEN 202433164C) – Singapore-based supplier of electrical works, temporary site power, generators and construction machinery for construction sites across Singapore." />
-  <meta name="theme-color" content="#1b3f6b" />
+  <title>Asia Engineering Pte Ltd | We Power the Sites that Build Singapore</title>
+  <meta name="description" content="Asia Engineering Pte Ltd (UEN 202433164C) — electrical works, temporary site power, generators and construction machinery supply for construction sites across Singapore." />
+  <meta name="theme-color" content="#040b16" />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
+<body class="is-loading">
 
-  <!-- ============ PRELOADER ============ -->
-  <div id="preloader" aria-hidden="true">
-    <div class="preloader-inner">
-      <img src="assets/img/logo-mark-white.png" alt="" class="preloader-logo" />
-      <div class="preloader-bar"><span></span></div>
-      <p>Powering up…</p>
+  <!-- ================= INTRO: the logo assembles, the bolt strikes ================= -->
+  <div id="intro" aria-hidden="true">
+    <div class="intro-grid"></div>
+    <div class="intro-stage">
+      <div class="intro-logo">
+        <img src="assets/img/mark-a.png" alt="" class="piece piece-a" />
+        <img src="assets/img/mark-e.png" alt="" class="piece piece-e" />
+        <img src="assets/img/mark-bolt.png" alt="" class="piece piece-bolt" />
+      </div>
+      <div class="intro-name" data-split>ASIA ENGINEERING</div>
+      <div class="intro-meta"><span>CHARGING</span><span class="intro-count" id="introCount">000</span><span>%</span></div>
     </div>
+    <div class="intro-flash"></div>
   </div>
 
-  <!-- ============ HEADER ============ -->
-  <header class="site-header" id="header">
-    <div class="container nav-wrap">
-      <a href="#home" class="brand" aria-label="Asia Engineering Pte Ltd – home">
-        <img src="assets/img/logo-full-white.png" alt="Asia Engineering Pte Ltd" class="brand-light" />
-        <img src="assets/img/logo-full.png" alt="" class="brand-dark" aria-hidden="true" />
-      </a>
-      <nav class="main-nav" id="mainNav" aria-label="Main">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#equipment">Equipment</a>
-        <a href="#process">Process</a>
-        <a href="#contact" class="btn btn-sm btn-accent">Get a Quote</a>
-      </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
-        <span></span><span></span><span></span>
+  <!-- ================= global FX ================= -->
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span>VIEW</span></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- scroll "power cable" -->
+  <div class="load-meter" aria-hidden="true">
+    <span class="lm-label">LOAD</span>
+    <div class="lm-track"><div class="lm-fill" id="lmFill"><i></i></div></div>
+    <span class="lm-val" id="lmVal">00%</span>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="hdr" id="hdr">
+    <a href="#top" class="hdr-logo" aria-label="Asia Engineering Pte Ltd — home">
+      <img src="assets/img/logo-full-white.png" alt="Asia Engineering Pte Ltd" />
+    </a>
+    <div class="hdr-right">
+      <span class="hdr-status"><i class="led"></i><span id="statusText">SITE STANDBY</span></span>
+      <a href="#contact" class="pill magnetic">Get a Quote</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
+        <span class="mb-text">Menu</span><span class="mb-lines"><i></i><i></i></span>
       </button>
     </div>
   </header>
 
-  <main>
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="home">
-      <canvas id="sparkCanvas" aria-hidden="true"></canvas>
-      <div class="hero-grid" aria-hidden="true"></div>
-
-      <!-- animated power line / truss -->
-      <svg class="hero-truss" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
-        <path class="wire w1" d="M0 60 Q 360 140 720 60 T 1440 60" />
-        <path class="wire w2" d="M0 90 Q 360 170 720 90 T 1440 90" />
-        <path class="wire-pulse p1" d="M0 60 Q 360 140 720 60 T 1440 60" />
-        <path class="wire-pulse p2" d="M0 90 Q 360 170 720 90 T 1440 90" />
-      </svg>
-
-      <div class="container hero-content">
-        <div class="hero-text">
-          <span class="eyebrow reveal"><span class="dot"></span> Singapore · UEN 202433164C</span>
-          <h1 class="reveal" data-delay="100">
-            Powering Singapore's
-            <span class="type-wrap"><span class="typed" id="typed">Construction Sites</span><span class="caret">|</span></span>
-          </h1>
-          <p class="lead reveal" data-delay="200">
-            Electrical works, temporary site power and construction machinery supply —
-            delivered safely, on time, and ready to work from day one.
-          </p>
-          <div class="hero-cta reveal" data-delay="300">
-            <a href="#contact" class="btn btn-accent">Request a Quote
-              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="#services" class="btn btn-ghost">Our Services</a>
-          </div>
-          <ul class="hero-badges reveal" data-delay="400">
-            <li><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/></svg> Safety First</li>
-            <li><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg> Fast Mobilisation</li>
-            <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" fill="none" stroke="#0b1f38" stroke-width="2"/></svg> Island-wide Support</li>
-          </ul>
-        </div>
-
-        <div class="hero-visual reveal" data-delay="200">
-          <div class="logo-orbit">
-            <div class="ring r1"></div>
-            <div class="ring r2"></div>
-            <div class="ring r3"></div>
-            <img src="assets/img/logo-mark-white.png" alt="Asia Engineering logo mark" class="hero-mark" />
-            <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
-          </div>
-        </div>
-      </div>
-
-      <a href="#about" class="scroll-cue" aria-label="Scroll down"><span></span></a>
-    </section>
-
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Temporary Site Power</span><i>⚡</i>
-        <span>Electrical Installation</span><i>⚡</i>
-        <span>Generator Supply</span><i>⚡</i>
-        <span>Distribution Boards</span><i>⚡</i>
-        <span>Construction Machinery</span><i>⚡</i>
-        <span>Site Lighting</span><i>⚡</i>
-        <span>Cables &amp; Accessories</span><i>⚡</i>
-        <span>Maintenance &amp; Testing</span><i>⚡</i>
-        <span>Temporary Site Power</span><i>⚡</i>
-        <span>Electrical Installation</span><i>⚡</i>
-        <span>Generator Supply</span><i>⚡</i>
-        <span>Distribution Boards</span><i>⚡</i>
-        <span>Construction Machinery</span><i>⚡</i>
-        <span>Site Lighting</span><i>⚡</i>
-        <span>Cables &amp; Accessories</span><i>⚡</i>
-        <span>Maintenance &amp; Testing</span><i>⚡</i>
+  <!-- full-screen menu -->
+  <nav class="menu" id="menu" aria-label="Main">
+    <div class="menu-bg"></div>
+    <div class="menu-inner">
+      <ol class="menu-links">
+        <li><a href="#top"><small>01</small><span>Home</span></a></li>
+        <li><a href="#about"><small>02</small><span>About</span></a></li>
+        <li><a href="#services"><small>03</small><span>Services</span></a></li>
+        <li><a href="#yard"><small>04</small><span>Supply Yard</span></a></li>
+        <li><a href="#process"><small>05</small><span>Process</span></a></li>
+        <li><a href="#contact"><small>06</small><span>Contact</span></a></li>
+      </ol>
+      <div class="menu-info">
+        <p class="mono">// HEAD OFFICE</p>
+        <p>11 Lorong 21A Geylang #04-05<br/>Lam Thong Building<br/>Singapore 338429</p>
+        <p class="mono">// EMAIL</p>
+        <p><a href="mailto:adminasiaeng@gmail.com">adminasiaeng@gmail.com</a></p>
+        <p class="mono">// UEN</p>
+        <p>202433164C</p>
       </div>
     </div>
+  </nav>
 
-    <!-- ============ ABOUT ============ -->
-    <section class="section about" id="about">
-      <div class="container about-grid">
-        <div class="about-visual reveal-left">
-          <div class="about-card">
-            <img src="assets/img/logo-mark.png" alt="Asia Engineering mark" />
-            <div class="about-tag">
-              <strong>Est. 2024</strong>
-              <span>Singapore</span>
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-grid hero-grid--lit"></div>
+      <div class="hero-glow"></div>
+
+      <div class="hero-content">
+        <p class="hero-tag mono reveal-up">[ SG ] ELECTRICAL &amp; SUPPLY MACHINERY TO CONSTRUCTION SITES</p>
+        <h1 class="hero-title">
+          <span class="line"><span>We <em class="glow-word">power</em></span></span>
+          <span class="line"><span>the sites that</span></span>
+          <span class="line"><span><b class="outline">build</b> Singapore.</span></span>
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-sub reveal-up">Temporary site power, electrical installation, generators and construction machinery — delivered, installed and kept running from day one to handover.</p>
+
+          <!-- the breaker switch -->
+          <div class="breaker-wrap reveal-up">
+            <button class="breaker" id="breaker" role="switch" aria-checked="false" aria-label="Power up the site">
+              <span class="breaker-body">
+                <span class="breaker-on">ON</span>
+                <span class="breaker-lever"></span>
+                <span class="breaker-off">OFF</span>
+              </span>
+            </button>
+            <div class="breaker-hint">
+              <span class="mono">MAIN SWITCH</span>
+              <strong id="breakerText">Flip to power up the site</strong>
+              <svg class="hint-arrow" viewBox="0 0 80 40"><path d="M78 30 C 50 38, 20 30, 6 8 M6 8 l2 12 M6 8 l11 4" /></svg>
             </div>
           </div>
-          <div class="about-float">
-            <svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
-            <div><strong>Electrical</strong><span>&amp; Machinery Supply</span></div>
+        </div>
+      </div>
+
+      <!-- Singapore skyline + cranes (windows generated in JS) -->
+      <svg class="skyline" id="skyline" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#d9ffc9" stop-opacity=".55" />
+            <stop offset="1" stop-color="#84c76c" stop-opacity="0" />
+          </linearGradient>
+          <pattern id="lattice" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M0 0 L10 10 M10 0 L0 10" stroke="#24476f" stroke-width="1.2" />
+          </pattern>
+        </defs>
+        <g class="beams">
+          <polygon points="250,95 120,420 380,420" fill="url(#beam)" />
+          <polygon points="1290,60 1160,420 1420,420" fill="url(#beam)" />
+        </g>
+        <g id="bgCity" class="city-back"></g>
+        <!-- Marina Bay Sands -->
+        <g class="mbs">
+          <path d="M690 170 h34 l6 250 h-46z" />
+          <path d="M752 170 h34 l6 250 h-46z" />
+          <path d="M814 170 h34 l6 250 h-46z" />
+          <path d="M664 158 Q 760 148 878 154 l6 10 Q 760 158 664 168z" />
+        </g>
+        <g id="fgCity" class="city-front"></g>
+        <!-- crane 1 -->
+        <g class="crane" transform="translate(250 0)">
+          <rect x="-9" y="100" width="18" height="320" fill="url(#lattice)" stroke="#24476f" stroke-width="2" />
+          <path class="crane-top" d="M0 100 L0 70 M-70 100 H 260 M-70 100 L0 70 L260 100" />
+          <rect x="-70" y="100" width="38" height="20" class="crane-weight" />
+          <g class="trolley t1"><line x1="0" y1="100" x2="0" y2="230" class="cable" /><rect x="-8" y="228" width="16" height="12" class="hook" /></g>
+          <circle cx="0" cy="68" r="4" class="beacon" />
+        </g>
+        <!-- crane 2 -->
+        <g class="crane" transform="translate(1290 0)">
+          <rect x="-8" y="70" width="16" height="350" fill="url(#lattice)" stroke="#24476f" stroke-width="2" />
+          <path class="crane-top" d="M0 70 L0 42 M-240 70 H 60 M60 70 L0 42 L-240 70" />
+          <rect x="30" y="70" width="32" height="18" class="crane-weight" />
+          <g class="trolley t2"><line x1="0" y1="70" x2="0" y2="180" class="cable" /><rect x="-8" y="178" width="16" height="12" class="hook" /></g>
+          <circle cx="0" cy="40" r="4" class="beacon" />
+        </g>
+        <!-- live power line -->
+        <path class="pline" d="M0 330 Q 400 380 800 330 T 1600 330" />
+        <path class="pline-pulse" d="M0 330 Q 400 380 800 330 T 1600 330" />
+      </svg>
+
+      <a href="#about" class="scroll-hint mono" data-cursor="Scroll">SCROLL <span></span></a>
+    </section>
+
+    <!-- ================= CROSSING SITE TAPES ================= -->
+    <section class="tapes" aria-hidden="true">
+      <div class="tape tape-a"><div class="tape-track" data-speed="1">
+        <span>Electrical Works</span><b>⚡</b><span>Temporary Site Power</span><b>⚡</b><span>Generator Supply</span><b>⚡</b><span>Site Lighting</span><b>⚡</b>
+        <span>Electrical Works</span><b>⚡</b><span>Temporary Site Power</span><b>⚡</b><span>Generator Supply</span><b>⚡</b><span>Site Lighting</span><b>⚡</b>
+      </div></div>
+      <div class="tape tape-b"><div class="tape-track" data-speed="-1">
+        <span>Machinery Supply</span><b>✦</b><span>Distribution Boards</span><b>✦</b><span>Cables &amp; Fittings</span><b>✦</b><span>Testing &amp; Maintenance</span><b>✦</b>
+        <span>Machinery Supply</span><b>✦</b><span>Distribution Boards</span><b>✦</b><span>Cables &amp; Fittings</span><b>✦</b><span>Testing &amp; Maintenance</span><b>✦</b>
+      </div></div>
+    </section>
+
+    <!-- ================= ABOUT: words light up as you scroll ================= -->
+    <section class="about" id="about">
+      <div class="about-sticky">
+        <div class="about-side">
+          <p class="mono">// 02 — ABOUT US</p>
+          <div class="spec">
+            <div><span>Company</span><b>Asia Engineering Pte Ltd</b></div>
+            <div><span>UEN</span><b>202433164C</b></div>
+            <div><span>Est.</span><b>2024</b></div>
+            <div><span>Based in</span><b>Geylang, Singapore</b></div>
           </div>
         </div>
-        <div class="about-text">
-          <span class="section-tag reveal">About Us</span>
-          <h2 class="reveal" data-delay="100">Your trusted partner for <em>power &amp; equipment</em> on site</h2>
-          <p class="reveal" data-delay="200">
-            <strong>Asia Engineering Pte Ltd</strong> is a Singapore-registered company specialising in electrical
-            works and the supply of electrical equipment and machinery to construction sites. From the first
-            temporary power connection to final handover, we keep your project energised and moving.
-          </p>
-          <p class="reveal" data-delay="250">
-            We work closely with main contractors, sub-contractors and developers to provide reliable equipment,
-            skilled manpower and responsive support — with safety and compliance at the heart of everything we do.
-          </p>
-          <ul class="checklist reveal" data-delay="300">
-            <li>Temporary &amp; permanent electrical installations</li>
-            <li>Supply &amp; rental of site machinery and equipment</li>
-            <li>Workplace-safety focused team</li>
-            <li>Fast delivery across Singapore</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary reveal" data-delay="350">Talk to Our Team</a>
-        </div>
+        <p class="about-text" id="aboutText">From the first temporary connection to the final handover, Asia Engineering keeps Singapore's construction sites <em>powered, lit and moving</em> — supplying the electrical works, equipment and machinery your project depends on, with safety wired into every job.</p>
       </div>
     </section>
 
-    <!-- ============ STATS ============ -->
-    <section class="stats">
-      <div class="container stats-grid">
-        <div class="stat reveal"><span class="num" data-count="24">0</span><span class="suffix">/7</span><p>Site Support</p></div>
-        <div class="stat reveal" data-delay="100"><span class="num" data-count="100">0</span><span class="suffix">%</span><p>Safety Commitment</p></div>
-        <div class="stat reveal" data-delay="200"><span class="num" data-count="6">0</span><span class="suffix">+</span><p>Core Service Lines</p></div>
-        <div class="stat reveal" data-delay="300"><span class="num" data-count="1">0</span><span class="suffix"> Call</span><p>One-Stop Supplier</p></div>
-      </div>
-    </section>
-
-    <!-- ============ SERVICES ============ -->
-    <section class="section services" id="services">
-      <div class="container">
-        <div class="section-head center">
-          <span class="section-tag reveal">What We Do</span>
-          <h2 class="reveal" data-delay="100">Electrical &amp; Supply Solutions for <em>Construction Sites</em></h2>
-          <p class="reveal" data-delay="200">Everything your site needs to stay powered, lit and productive — under one roof.</p>
+    <!-- ================= SERVICES: horizontal ride ================= -->
+    <section class="services" id="services">
+      <div class="svc-sticky">
+        <div class="svc-head">
+          <p class="mono">// 03 — WHAT WE DO</p>
+          <h2>Six circuits.<br/><span class="outline">One supplier.</span></h2>
+          <div class="svc-progress"><i id="svcBar"></i></div>
         </div>
-
-        <div class="cards">
-          <article class="card tilt reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 48 48"><path d="M27 4 9 28h13l-3 16 20-26H26l1-14Z"/></svg>
-            </div>
+        <div class="svc-track" id="svcTrack">
+          <article class="svc-card" data-cursor="⚡">
+            <span class="svc-no">01</span>
+            <svg class="svc-ico" viewBox="0 0 64 64"><path d="M36 4 12 38h17l-4 22 27-36H34l2-20Z"/></svg>
             <h3>Temporary Site Power</h3>
-            <p>Design, installation and dismantling of temporary electrical supply for construction sites, site offices and worker quarters.</p>
-            <span class="card-num">01</span>
+            <p>Design, installation and dismantling of temporary electrical supply for sites, site offices and worker quarters.</p>
+            <ul><li>TEMP DB</li><li>CABLING</li><li>DISMANTLE</li></ul>
           </article>
-          <article class="card tilt reveal" data-delay="100">
-            <div class="card-icon">
-              <svg viewBox="0 0 48 48"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 14h16M16 22h16M16 30h8" stroke-width="3" stroke="#fff" fill="none"/></svg>
-            </div>
+          <article class="svc-card" data-cursor="⚡">
+            <span class="svc-no">02</span>
+            <svg class="svc-ico" viewBox="0 0 64 64"><rect x="14" y="6" width="36" height="52" rx="4"/><path d="M22 18h20M22 28h20M22 38h10"/></svg>
             <h3>Electrical Installation</h3>
-            <p>Wiring, distribution boards, cable laying, power points and lighting installations carried out by experienced electricians.</p>
-            <span class="card-num">02</span>
+            <p>Wiring, distribution boards, cable laying, power points and lighting — carried out by experienced electricians.</p>
+            <ul><li>WIRING</li><li>DB BOARDS</li><li>POWER POINTS</li></ul>
           </article>
-          <article class="card tilt reveal" data-delay="200">
-            <div class="card-icon">
-              <svg viewBox="0 0 48 48"><rect x="6" y="14" width="36" height="22" rx="3"/><circle cx="18" cy="25" r="5" fill="#fff"/><path d="M30 20v10M26 25h8" stroke="#fff" stroke-width="3"/><path d="M10 36v4M38 36v4" stroke-width="3"/></svg>
-            </div>
+          <article class="svc-card" data-cursor="⚡">
+            <span class="svc-no">03</span>
+            <svg class="svc-ico" viewBox="0 0 64 64"><rect x="6" y="18" width="52" height="30" rx="4"/><circle cx="22" cy="33" r="7"/><path d="M40 27v12M34 33h12M12 48v6M52 48v6"/></svg>
             <h3>Generator Supply</h3>
             <p>Supply and rental of diesel generators and power equipment for reliable standby and primary site power.</p>
-            <span class="card-num">03</span>
+            <ul><li>RENTAL</li><li>STANDBY</li><li>PRIME POWER</li></ul>
           </article>
-          <article class="card tilt reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 48 48"><path d="M6 38h36v4H6zM10 38V24l10-8h8v22M28 22h10l4 8v8"/><circle cx="16" cy="40" r="3" fill="#fff"/><circle cx="36" cy="40" r="3" fill="#fff"/><path d="M20 16 34 4l4 4" stroke-width="3" fill="none"/></svg>
-            </div>
+          <article class="svc-card" data-cursor="⚡">
+            <span class="svc-no">04</span>
+            <svg class="svc-ico" viewBox="0 0 64 64"><path d="M8 54h48M14 54V34l12-10h10v30M36 30h12l6 10v14"/><circle cx="20" cy="54" r="4"/><circle cx="46" cy="54" r="4"/><path d="M26 24 46 8l6 6"/></svg>
             <h3>Construction Machinery</h3>
-            <p>Supply of construction machinery and site equipment to keep your works on schedule — delivered and ready to use.</p>
-            <span class="card-num">04</span>
+            <p>Supply of construction machinery and site equipment — delivered to site and ready to work.</p>
+            <ul><li>SUPPLY</li><li>DELIVERY</li><li>ON-SITE</li></ul>
           </article>
-          <article class="card tilt reveal" data-delay="100">
-            <div class="card-icon">
-              <svg viewBox="0 0 48 48"><path d="M24 4a12 12 0 0 0-7 21.7V32h14v-6.3A12 12 0 0 0 24 4Z"/><path d="M18 36h12v3H18zM20 42h8v2h-8z"/></svg>
-            </div>
+          <article class="svc-card" data-cursor="⚡">
+            <span class="svc-no">05</span>
+            <svg class="svc-ico" viewBox="0 0 64 64"><path d="M32 6a16 16 0 0 0-9 29.2V44h18v-8.8A16 16 0 0 0 32 6Z"/><path d="M24 50h16M27 57h10"/></svg>
             <h3>Site Lighting</h3>
-            <p>Temporary floodlights, tower lights and corridor lighting for safe working conditions day and night.</p>
-            <span class="card-num">05</span>
+            <p>Floodlights, tower lights and corridor lighting for safe working conditions, day and night.</p>
+            <ul><li>FLOOD</li><li>TOWER</li><li>CORRIDOR</li></ul>
           </article>
-          <article class="card tilt reveal" data-delay="200">
-            <div class="card-icon">
-              <svg viewBox="0 0 48 48"><path d="M30 6a10 10 0 0 0-9.6 12.8L6 33.2V42h8.8l14.4-14.4A10 10 0 1 0 30 6Zm2 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
-            </div>
+          <article class="svc-card" data-cursor="⚡">
+            <span class="svc-no">06</span>
+            <svg class="svc-ico" viewBox="0 0 64 64"><path d="M40 8a13 13 0 0 0-12.5 16.6L8 44v12h12l19.4-19.5A13 13 0 1 0 40 8Z"/><circle cx="42" cy="22" r="4"/></svg>
             <h3>Maintenance &amp; Testing</h3>
-            <p>Routine inspection, testing, troubleshooting and emergency call-outs to keep your site power safe and running.</p>
-            <span class="card-num">06</span>
+            <p>Routine inspection, testing, troubleshooting and call-outs to keep site power safe and running.</p>
+            <ul><li>INSPECT</li><li>TEST</li><li>CALL-OUT</li></ul>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ EQUIPMENT ============ -->
-    <section class="section equipment" id="equipment">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag light reveal">Equipment &amp; Supplies</span>
-          <h2 class="reveal" data-delay="100">What we supply to <em>your site</em></h2>
-        </div>
-
-        <div class="tabs reveal" data-delay="150" role="tablist">
-          <button class="tab active" role="tab" aria-selected="true" data-tab="electrical">Electrical</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="power">Power</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="machinery">Machinery</button>
-        </div>
-
-        <div class="tab-panels">
-          <div class="tab-panel active" id="tab-electrical" role="tabpanel">
-            <div class="equip">⚡<span>Distribution Boards (DB)</span></div>
-            <div class="equip">🔌<span>Industrial Sockets &amp; Plugs</span></div>
-            <div class="equip">🧵<span>Power Cables &amp; Armoured Cables</span></div>
-            <div class="equip">🛡️<span>Circuit Breakers &amp; RCCB</span></div>
-            <div class="equip">🔧<span>Cable Trays &amp; Accessories</span></div>
-            <div class="equip">📦<span>Extension &amp; Cable Reels</span></div>
-          </div>
-          <div class="tab-panel" id="tab-power" role="tabpanel">
-            <div class="equip">🔋<span>Diesel Generators</span></div>
-            <div class="equip">💡<span>Tower &amp; Flood Lights</span></div>
-            <div class="equip">🔦<span>Temporary Corridor Lighting</span></div>
-            <div class="equip">⚙️<span>Transformers &amp; Isolators</span></div>
-            <div class="equip">🔁<span>Changeover Switches</span></div>
-            <div class="equip">📏<span>Testing &amp; Metering Equipment</span></div>
-          </div>
-          <div class="tab-panel" id="tab-machinery" role="tabpanel">
-            <div class="equip">🏗️<span>Site Machinery &amp; Equipment</span></div>
-            <div class="equip">🛠️<span>Power Tools</span></div>
-            <div class="equip">💨<span>Ventilation &amp; Blower Fans</span></div>
-            <div class="equip">💧<span>Water Pumps</span></div>
-            <div class="equip">🪜<span>Access Equipment</span></div>
-            <div class="equip">🦺<span>Safety Equipment &amp; PPE</span></div>
-          </div>
-        </div>
-
-        <p class="equip-note reveal">Need something not listed? <a href="#contact">Tell us what your site needs</a> — we'll source it.</p>
-      </div>
-    </section>
-
-    <!-- ============ WHY US ============ -->
-    <section class="section why">
-      <div class="container why-grid">
-        <div class="why-text">
-          <span class="section-tag reveal">Why Choose Us</span>
-          <h2 class="reveal" data-delay="100">Built on <em>safety</em>, driven by <em>reliability</em></h2>
-          <p class="reveal" data-delay="200">On a construction site, downtime costs money. We make sure power and equipment are never the reason your project slows down.</p>
-        </div>
-        <div class="why-list">
-          <div class="why-item reveal-right">
-            <div class="why-ico">🛡️</div>
-            <div><h4>Safety &amp; Compliance</h4><p>Works carried out in line with Singapore electrical and workplace safety requirements.</p></div>
-          </div>
-          <div class="why-item reveal-right" data-delay="100">
-            <div class="why-ico">⚡</div>
-            <div><h4>Quick Response</h4><p>Fast mobilisation and responsive support whenever your site needs us.</p></div>
-          </div>
-          <div class="why-item reveal-right" data-delay="200">
-            <div class="why-ico">🤝</div>
-            <div><h4>One-Stop Supplier</h4><p>Electrical works, power and machinery from one accountable partner.</p></div>
-          </div>
-          <div class="why-item reveal-right" data-delay="300">
-            <div class="why-ico">💰</div>
-            <div><h4>Competitive Pricing</h4><p>Transparent quotations with flexible supply and rental options.</p></div>
+          <div class="svc-end">
+            <p>Need something<br/>else on site?</p>
+            <a href="#contact" class="pill pill--green magnetic">Ask us →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ PROCESS ============ -->
-    <section class="section process" id="process">
-      <div class="container">
-        <div class="section-head center">
-          <span class="section-tag reveal">How We Work</span>
-          <h2 class="reveal" data-delay="100">From enquiry to <em>energised</em></h2>
+    <!-- ================= NEON STATS ================= -->
+    <section class="neon" id="neon">
+      <div class="neon-item"><div class="neon-num" data-neon>24/7</div><p>Site support</p></div>
+      <div class="neon-item"><div class="neon-num" data-neon>100%</div><p>Safety commitment</p></div>
+      <div class="neon-item"><div class="neon-num" data-neon>06</div><p>Service lines</p></div>
+      <div class="neon-item"><div class="neon-num" data-neon>SG</div><p>Island-wide delivery</p></div>
+    </section>
+
+    <!-- ================= SUPPLY YARD ================= -->
+    <section class="yard" id="yard">
+      <div class="yard-head">
+        <p class="mono">// 04 — THE SUPPLY YARD</p>
+        <h2>What we bring <span class="outline">to your site</span></h2>
+        <div class="chips" role="tablist">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="elec">Electrical</button>
+          <button class="chip" data-filter="power">Power &amp; Lighting</button>
+          <button class="chip" data-filter="mach">Machinery</button>
         </div>
-        <div class="timeline">
-          <div class="timeline-line"><span id="timelineFill"></span></div>
-          <div class="step reveal"><div class="step-dot">1</div><h4>Enquiry</h4><p>Share your site requirements, drawings or equipment list.</p></div>
-          <div class="step reveal" data-delay="100"><div class="step-dot">2</div><h4>Site Survey</h4><p>We assess the site and power needs on the ground.</p></div>
-          <div class="step reveal" data-delay="200"><div class="step-dot">3</div><h4>Quotation</h4><p>Clear, competitive pricing with timeline.</p></div>
-          <div class="step reveal" data-delay="300"><div class="step-dot">4</div><h4>Delivery &amp; Install</h4><p>Equipment delivered and installed safely.</p></div>
-          <div class="step reveal" data-delay="400"><div class="step-dot">5</div><h4>Ongoing Support</h4><p>Maintenance and support until handover.</p></div>
-        </div>
+      </div>
+
+      <div class="yard-grid" id="yardGrid">
+        <div class="item" data-cat="elec"><span class="code">EQ-01</span><h4>Distribution Boards</h4><p>Temporary &amp; permanent DBs</p></div>
+        <div class="item" data-cat="elec"><span class="code">EQ-02</span><h4>Power &amp; Armoured Cables</h4><p>Sized for site loads</p></div>
+        <div class="item" data-cat="elec"><span class="code">EQ-03</span><h4>Breakers &amp; RCCB</h4><p>Protection devices</p></div>
+        <div class="item" data-cat="elec"><span class="code">EQ-04</span><h4>Industrial Sockets</h4><p>Plugs, sockets &amp; isolators</p></div>
+        <div class="item" data-cat="power"><span class="code">PW-01</span><h4>Diesel Generators</h4><p>Standby &amp; prime power</p></div>
+        <div class="item" data-cat="power"><span class="code">PW-02</span><h4>Tower Lights</h4><p>Night works &amp; open areas</p></div>
+        <div class="item" data-cat="power"><span class="code">PW-03</span><h4>Flood &amp; Corridor Lights</h4><p>Temporary lighting runs</p></div>
+        <div class="item" data-cat="power"><span class="code">PW-04</span><h4>Changeover Switches</h4><p>Safe power switching</p></div>
+        <div class="item" data-cat="mach"><span class="code">MC-01</span><h4>Site Machinery</h4><p>Supplied to your site</p></div>
+        <div class="item" data-cat="mach"><span class="code">MC-02</span><h4>Power Tools</h4><p>For trades on site</p></div>
+        <div class="item" data-cat="mach"><span class="code">MC-03</span><h4>Water Pumps</h4><p>Dewatering &amp; transfer</p></div>
+        <div class="item" data-cat="mach"><span class="code">MC-04</span><h4>Blowers &amp; Ventilation</h4><p>Fresh air for confined work</p></div>
+      </div>
+      <p class="yard-note">Can't see it? <a href="#contact" class="link-line">Tell us what your site needs</a> and we'll source it.</p>
+    </section>
+
+    <!-- ================= PROCESS: a circuit board ================= -->
+    <section class="process" id="process">
+      <div class="process-head">
+        <p class="mono">// 05 — HOW WE WORK</p>
+        <h2>From enquiry <span class="outline">to energised</span></h2>
+      </div>
+      <div class="circuit" id="circuit">
+        <svg class="circuit-svg" id="circuitSvg" aria-hidden="true">
+          <path class="trace-bg" id="traceBg" />
+          <path class="trace" id="trace" />
+        </svg>
+        <div class="node"><div class="chip-ic"><span>01</span></div><h4>Enquiry</h4><p>Send us your site needs, drawings or equipment list.</p></div>
+        <div class="node"><div class="chip-ic"><span>02</span></div><h4>Site Survey</h4><p>We assess the site and its power demand on the ground.</p></div>
+        <div class="node"><div class="chip-ic"><span>03</span></div><h4>Quotation</h4><p>Clear, competitive pricing and timeline.</p></div>
+        <div class="node"><div class="chip-ic"><span>04</span></div><h4>Deliver &amp; Install</h4><p>Equipment delivered and installed safely.</p></div>
+        <div class="node"><div class="chip-ic"><span>05</span></div><h4>Stay Powered</h4><p>Maintenance and support until handover.</p></div>
       </div>
     </section>
 
-    <!-- ============ CTA ============ -->
-    <section class="cta-band">
-      <svg class="cta-bolt" viewBox="0 0 48 48" aria-hidden="true"><path d="M27 4 9 28h13l-3 16 20-26H26l1-14Z"/></svg>
-      <div class="container cta-inner">
-        <h2 class="reveal">Need power or machinery on site?</h2>
-        <p class="reveal" data-delay="100">Get a fast, no-obligation quotation from our team today.</p>
-        <a href="#contact" class="btn btn-accent reveal" data-delay="200">Get a Free Quote</a>
+    <!-- ================= WHY: bento ================= -->
+    <section class="why">
+      <div class="bento">
+        <div class="bento-tile big">
+          <p class="mono">// WHY ASIA ENGINEERING</p>
+          <h2>Downtime costs money.<br/><em>We make sure power isn't the reason.</em></h2>
+          <div class="bento-mark">
+            <img src="assets/img/mark-a.png" alt="" class="bm-a" />
+            <img src="assets/img/mark-e.png" alt="" class="bm-e" />
+            <img src="assets/img/mark-bolt.png" alt="" class="bm-bolt" />
+          </div>
+        </div>
+        <div class="bento-tile"><span class="b-ico">⛑</span><h4>Safety &amp; compliance</h4><p>Work done in line with Singapore electrical and workplace-safety requirements.</p></div>
+        <div class="bento-tile"><span class="b-ico">⚡</span><h4>Fast mobilisation</h4><p>Quick response when your site needs power or equipment.</p></div>
+        <div class="bento-tile"><span class="b-ico">◎</span><h4>One accountable partner</h4><p>Electrical works, power and machinery under one roof.</p></div>
+        <div class="bento-tile"><span class="b-ico">$</span><h4>Honest pricing</h4><p>Transparent quotes with flexible supply and rental options.</p></div>
       </div>
     </section>
 
-    <!-- ============ CONTACT ============ -->
-    <section class="section contact" id="contact">
-      <div class="container contact-grid">
-        <div class="contact-info">
-          <span class="section-tag reveal">Contact Us</span>
-          <h2 class="reveal" data-delay="100">Let's <em>power up</em> your project</h2>
-          <p class="reveal" data-delay="150">Tell us about your site and we'll get back to you promptly.</p>
+    <!-- ================= CTA ================= -->
+    <section class="cta">
+      <div class="cta-marquee"><div class="cta-track" data-speed="1.4">
+        <span>Let's power up your site</span><b>⚡</b><span>Let's power up your site</span><b>⚡</b><span>Let's power up your site</span><b>⚡</b><span>Let's power up your site</span><b>⚡</b>
+      </div></div>
+      <a href="#contact" class="cta-orb magnetic" data-cursor="Go">
+        <svg viewBox="0 0 200 200" class="orb-text">
+          <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
+          <text><textPath href="#circ">REQUEST A QUOTE • REQUEST A QUOTE • REQUEST A QUOTE • </textPath></text>
+        </svg>
+        <svg viewBox="0 0 48 48" class="orb-bolt"><path d="M27 4 9 28h13l-3 16 20-26H26l1-14Z"/></svg>
+      </a>
+    </section>
 
-          <div class="info-item reveal" data-delay="200">
-            <div class="info-ico"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></div>
-            <div><h5>Office Address</h5><p>11 Lorong 21A Geylang #04-05<br/>Lam Thong Building<br/>Singapore 338429</p></div>
-          </div>
-          <div class="info-item reveal" data-delay="250">
-            <div class="info-ico"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z" /><path d="m3 6 9 7 9-7" fill="none" stroke="#fff" stroke-width="2"/></svg></div>
-            <div><h5>Email</h5><p><a href="mailto:adminasiaeng@gmail.com">adminasiaeng@gmail.com</a></p></div>
-          </div>
-          <div class="info-item reveal" data-delay="300">
-            <div class="info-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5" stroke="#fff" stroke-width="2"/></svg></div>
-            <div><h5>Company UEN</h5><p>202433164C</p></div>
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <p class="mono">// 06 — CONTACT</p>
+          <h2>Tell us about <span class="outline">your site.</span></h2>
+          <div class="c-lines">
+            <a href="mailto:adminasiaeng@gmail.com" class="c-line" data-cursor="Mail">
+              <span class="mono">EMAIL</span><b>adminasiaeng@gmail.com</b><i>↗</i>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=11+Lorong+21A+Geylang+Singapore+338429" target="_blank" rel="noopener" class="c-line" data-cursor="Map">
+              <span class="mono">OFFICE</span><b>11 Lorong 21A Geylang #04-05, Lam Thong Building, Singapore 338429</b><i>↗</i>
+            </a>
+            <div class="c-line"><span class="mono">UEN</span><b>202433164C</b></div>
           </div>
         </div>
 
-        <form class="contact-form reveal-right" id="contactForm" novalidate>
-          <h3>Request a Quotation</h3>
-          <div class="field-row">
-            <div class="field"><input type="text" id="name" name="name" required placeholder=" " /><label for="name">Your Name *</label></div>
-            <div class="field"><input type="text" id="company" name="company" placeholder=" " /><label for="company">Company</label></div>
+        <form class="form" id="form" novalidate>
+          <div class="f-row">
+            <label class="f"><input name="name" id="fName" required placeholder=" " /><span>Your name *</span></label>
+            <label class="f"><input name="company" id="fCompany" placeholder=" " /><span>Company</span></label>
           </div>
-          <div class="field-row">
-            <div class="field"><input type="email" id="email" name="email" required placeholder=" " /><label for="email">Email *</label></div>
-            <div class="field"><input type="tel" id="phone" name="phone" placeholder=" " /><label for="phone">Phone</label></div>
+          <div class="f-row">
+            <label class="f"><input type="email" name="email" id="fEmail" required placeholder=" " /><span>Email *</span></label>
+            <label class="f"><input type="tel" name="phone" id="fPhone" placeholder=" " /><span>Phone</span></label>
           </div>
-          <div class="field">
-            <select id="service" name="service">
-              <option>Temporary Site Power</option>
-              <option>Electrical Installation</option>
-              <option>Generator Supply</option>
-              <option>Construction Machinery</option>
-              <option>Site Lighting</option>
-              <option>Maintenance &amp; Testing</option>
-              <option>Other</option>
-            </select>
-            <label for="service" class="fixed">Service Needed</label>
+          <p class="mono f-label">I NEED</p>
+          <div class="need" id="need">
+            <button type="button" class="active">Site Power</button>
+            <button type="button">Electrical Installation</button>
+            <button type="button">Generator</button>
+            <button type="button">Machinery</button>
+            <button type="button">Lighting</button>
+            <button type="button">Maintenance</button>
           </div>
-          <div class="field"><textarea id="message" name="message" rows="4" required placeholder=" "></textarea><label for="message">Project Details *</label></div>
-          <button type="submit" class="btn btn-accent btn-block">Send Enquiry
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <p class="form-msg" id="formMsg" role="status"></p>
+          <label class="f"><textarea name="message" id="fMsg" rows="3" required placeholder=" "></textarea><span>Project details *</span></label>
+          <button type="submit" class="send magnetic"><span class="send-fill"></span><span class="send-txt">Send enquiry ⚡</span></button>
+          <p class="f-msg" id="fMsgOut" role="status"></p>
         </form>
       </div>
-
-      <div class="container map-wrap reveal">
-        <iframe
-          title="Asia Engineering Pte Ltd location"
-          src="https://www.google.com/maps?q=11+Lorong+21A+Geylang+Singapore+338429&output=embed"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map">
+        <iframe title="Asia Engineering Pte Ltd location" src="https://www.google.com/maps?q=11+Lorong+21A+Geylang+Singapore+338429&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <img src="assets/img/logo-full-white.png" alt="Asia Engineering Pte Ltd" />
-        <p>Electrical &amp; supply machinery to construction sites across Singapore.</p>
-      </div>
-      <div>
-        <h5>Quick Links</h5>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#equipment">Equipment</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Services</h5>
-        <ul>
-          <li>Temporary Site Power</li>
-          <li>Electrical Installation</li>
-          <li>Generator Supply</li>
-          <li>Construction Machinery</li>
-        </ul>
-      </div>
-      <div>
-        <h5>Contact</h5>
-        <ul>
-          <li>11 Lorong 21A Geylang #04-05, Lam Thong Building, Singapore 338429</li>
-          <li><a href="mailto:adminasiaeng@gmail.com">adminasiaeng@gmail.com</a></li>
-          <li>UEN: 202433164C</li>
-        </ul>
-      </div>
+  <!-- ================= FOOTER ================= -->
+  <footer class="ftr">
+    <div class="ftr-top">
+      <img src="assets/img/logo-full-white.png" alt="Asia Engineering Pte Ltd" />
+      <p>Electrical &amp; supply machinery to construction sites — Singapore.</p>
+      <a href="#top" class="pill">Back to top ↑</a>
     </div>
-    <div class="footer-bottom">
-      <div class="container">© <span id="year"></span> Asia Engineering Pte Ltd. All rights reserved.</div>
+    <div class="ftr-giant" aria-hidden="true"><span>ASIA</span><span>ENGINEERING</span></div>
+    <div class="ftr-bottom mono">
+      <span>© <span id="year"></span> ASIA ENGINEERING PTE LTD</span>
+      <span>UEN 202433164C</span>
+      <span>11 LORONG 21A GEYLANG, SINGAPORE 338429</span>
     </div>
   </footer>
-
-  <a href="#home" class="to-top" id="toTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
 
   <script src="assets/js/main.js"></script>
 </body>
